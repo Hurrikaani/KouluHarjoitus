@@ -11,18 +11,32 @@ namespace Kouluharjoitus
     {
         static void Main(string[] args)
         {
-            int Lämpötila = 0;
-            Console.WriteLine("Anna uusi lämpötila");
-            String Syöte = Console.ReadLine();
-            Lämpötila = int.Parse(Syöte);
+            while (true)
+            {
+                String tiedosto = @"C:\Koodailua\lämpötila.txt";
 
-            String tiedosto = @"C:\Koodailua\lämpötila.txt";
+                if (File.Exists(tiedosto))
+                {
+                    String aiempiarvo = File.ReadAllText(tiedosto);
+                    Console.WriteLine("Aiemmin asetettu arvo oli " + aiempiarvo + " Astetta");
+                }
+                else
+                {
+                    Console.WriteLine("Tervetuloa");
+                }
 
-            //Tiedostoon kirjoittaminen
-            File.WriteAllText(tiedosto, Lämpötila.ToString());
-            Console.WriteLine("Lämpötila on asetettu ja tallennettu");
 
-            Console.ReadLine();
+                int Lämpötila = 0;
+                Console.WriteLine("Anna uusi lämpötila");
+                String Syöte = Console.ReadLine();
+                Lämpötila = int.Parse(Syöte);
+
+                //Tiedostoon kirjoittaminen
+                File.WriteAllText(tiedosto, Lämpötila.ToString());
+                Console.WriteLine("Lämpötila on asetettu ja tallennettu");
+
+                Console.ReadLine();
+            }
         }
     }
 }
